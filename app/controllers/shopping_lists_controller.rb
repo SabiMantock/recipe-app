@@ -11,7 +11,7 @@ class ShoppingListsController < ApplicationController
   private
 
   def find_missing_foods
-    user_foods = current_user.foods
+    current_user.foods
     # recipe_foods = RecipeFood.includes(:food).where(recipe: @recipes).group(:food_id)
     # recipe_foods.select { |rf| user_foods.find_by(id: rf.food_id).nil? }
   end
