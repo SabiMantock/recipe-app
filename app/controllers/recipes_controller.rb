@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @recipes = current_user.recipes
@@ -25,7 +25,6 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe = current_user.recipes.find(params[:id])
-    puts "Destroying recipe with ID: #{params[:id]}"
     @recipe.destroy
     redirect_to recipes_path, notice: 'Recipe deleted successfully.'
   end
