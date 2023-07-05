@@ -75,3 +75,7 @@ group :test do
 end
 
 gem 'devise'
+
+gem 'jquery-rails'
+
+gem 'rails-ujs'
