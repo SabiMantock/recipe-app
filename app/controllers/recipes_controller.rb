@@ -23,6 +23,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
+    @recipe.public = false
 
     if @recipe.save
       redirect_to recipes_path, notice: 'Recipe created successfully.'
@@ -34,20 +35,24 @@ class RecipesController < ApplicationController
   def toggle
     @recipe = Recipe.find(params[:id])
     @recipe.update(public: !@recipe.public)
-    redirect_to recipes_path, notice: 'Recipe visibility toggled successfully.'
+  
+    if @recipe.public?
+      session[:public_recipes] ||= []
+      session[:public_recipes] << @recipe.id
+    else
+      session[:public_recipes].delete(@recipe.id) if session[:public_recipes]
+    end
+  
+    respond_to do |format|
+      format.html { redirect_to @recipe }
+    end
   end
 
   def public_recipes
     @public_recipes = Recipe.where(public: true).order(created_at: :desc)
   end
 
-  def calculate_total_amount
-    total_amount = 0
-    recipe_foods.each do |recipe_food|
-      total_amount += recipe_food.food.price * recipe_food.quantity
-    end
-    total_amount
-  end
+  
 
   def destroy
     @recipe = current_user.recipes.find(params[:id])
