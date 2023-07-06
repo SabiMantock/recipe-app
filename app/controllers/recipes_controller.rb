@@ -35,14 +35,14 @@ class RecipesController < ApplicationController
   def toggle
     @recipe = Recipe.find(params[:id])
     @recipe.update(public: !@recipe.public)
-  
+
     if @recipe.public?
       session[:public_recipes] ||= []
       session[:public_recipes] << @recipe.id
-    else
-      session[:public_recipes].delete(@recipe.id) if session[:public_recipes]
+    elsif session[:public_recipes]
+      session[:public_recipes].delete(@recipe.id)
     end
-  
+
     respond_to do |format|
       format.html { redirect_to @recipe }
     end
@@ -51,8 +51,6 @@ class RecipesController < ApplicationController
   def public_recipes
     @public_recipes = Recipe.where(public: true).order(created_at: :desc)
   end
-
-  
 
   def destroy
     @recipe = current_user.recipes.find(params[:id])
