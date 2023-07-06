@@ -7,11 +7,14 @@ Rails.application.routes.draw do
     resources :recipes, only: [:index, :new, :create, :show, :destroy] do
       member do
         patch 'toggle'
+        get 'shopping_list'
       end
+      resources :foods, only: [:new, :create]
       resources :recipe_foods, only: [:new, :create, :destroy]
     end
 
     get 'public_recipes', to: 'recipes#public_recipes', as: :public_recipes
+    get 'shopping_list', to: 'recipes#shopping_list'
   end
 
   root 'recipes#index'

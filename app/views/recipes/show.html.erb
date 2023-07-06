@@ -21,7 +21,8 @@
     </div>
   </section>
   <section >
-  <%= link_to 'Generate Shop List', '#' %>
+  <%= link_to 'Generate Shopping List', shopping_list_path, class: 'button' %>
+
     <% if @recipe.user == current_user %>
       <%= link_to 'Add Ingredient', new_recipe_recipe_food_path(@recipe) %>
     <% end %>
@@ -40,7 +41,7 @@
         <% food = recipe_food.food %>
         <tr>
           <td><%= food.name %></td>
-          <td><%= recipe_food.quantity %> <%= food.measurement_unit %></td>
+          <td><%= recipe_food.quantity %> </td>
           <td> $<%= food.price * recipe_food.quantity %></td>
           <td>
               <% if @recipe.user == current_user %>
