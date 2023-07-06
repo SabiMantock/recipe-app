@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Foods Index', type: :feature do
-
   before(:each) do
     @user = User.create(email: 'saba@example.com', password: 'sabani', name: 'saba')
     @user.confirm
