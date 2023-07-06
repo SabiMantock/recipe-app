@@ -23,7 +23,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
-    
+
     if @recipe.save
       redirect_to recipes_path, notice: 'Recipe created successfully.'
     else
@@ -41,6 +41,14 @@ class RecipesController < ApplicationController
     @public_recipes = Recipe.where(public: true).order(created_at: :desc)
   end
 
+  def calculate_total_amount
+    total_amount = 0
+    recipe_foods.each do |recipe_food|
+      total_amount += recipe_food.food.price * recipe_food.quantity
+    end
+    total_amount
+  end
+
   def destroy
     @recipe = current_user.recipes.find(params[:id])
     @recipe.destroy
@@ -48,11 +56,12 @@ class RecipesController < ApplicationController
   end
 
   private
+
   def authorize_recipe_toggle
     @recipe = Recipe.find(params[:id])
     return if @recipe.user_id == current_user.id
 
-    flash[:error] = "You are not authorized to perform this action."
+    flash[:error] = 'You are not authorized to perform this action.'
     redirect_to recipes_path
   end
 
