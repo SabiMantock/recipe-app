@@ -10,12 +10,14 @@
       </div>
     <div>
       <% if @recipe.user_id == current_user.id %>
-          <%= form_with model: @recipe, url: toggle_recipe_path(@recipe), method: :patch, local: true do |form| %>
-            <button type="submit" class="toggle-button <%= @recipe.public ? 'public' : 'private' %>">
-              <%= @recipe.public ? 'Public' : 'Private' %>
-            </button>
-          <% end %>
+        <%= form_with model: @recipe, url: toggle_recipe_path(@recipe), method: :patch, local: true do |form| %>
+        <% new_public_status = !@recipe.public %>
+        <button type="submit" class="toggle-button <%= @recipe.public ? 'private' : 'public' %>">
+          <%= new_public_status ? 'Private' : 'Public' %>
+        </button>
+          <%= form.hidden_field :public, value: new_public_status %>
         <% end %>
+     <% end %>
     </div>
   </section>
   <section >
