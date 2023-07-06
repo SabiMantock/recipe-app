@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = if user_signed_in?
-                 current_user.recipes
+                 current_user.recipes.includes(:user)
                else
                  Recipe.where(public: true)
                end
