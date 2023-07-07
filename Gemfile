@@ -81,3 +81,4 @@ gem 'devise'
 gem 'jquery-rails'
 
 gem 'rails-ujs'
+gem 'rails-controller-testing'
