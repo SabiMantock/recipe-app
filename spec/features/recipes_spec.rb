@@ -11,7 +11,7 @@ RSpec.describe 'Recipes index', type: :feature do
     visit recipes_path
   end
   it 'shows the header title' do
-    expect(page).to have_content("Recipes")
+    expect(page).to have_content('Recipes')
   end
 
   it 'shows the recipe name' do
@@ -36,7 +36,6 @@ RSpec.describe 'Recipes index', type: :feature do
 end
 
 RSpec.describe 'recipes visit index and delete recipe', type: :feature do
-
   before(:each) do
     @user = User.create(email: 'user@example.com', password: 'password', name: 'user')
     @user.confirm
@@ -64,7 +63,6 @@ RSpec.describe 'recipes visit index and delete recipe', type: :feature do
 end
 
 RSpec.describe 'recipes visit show recipe ', type: :feature do
-
   before(:each) do
     @user = User.create(email: 'user@example.com', password: 'password', name: 'user')
     @user.confirm

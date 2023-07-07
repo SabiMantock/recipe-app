@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Recipes Index', type: :request do
-
   describe 'Get /index' do
     before(:each) do
       @user = User.create(email: 'user@example.com', password: 'password', name: 'user')
@@ -26,7 +25,7 @@ RSpec.describe 'Recipes Index', type: :request do
     end
 
     it 'include the list of recipe of the user' do
-      expect(response.body).to include("Recipes")
+      expect(response.body).to include('Recipes')
     end
   end
 

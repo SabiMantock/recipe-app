@@ -4,7 +4,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
 require 'rails_helper'
-include ActionView::Helpers::NumberHelper
+# include ActionView::Helpers::NumberHelper
 
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?

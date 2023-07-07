@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'general shopping list Index', type: :request do
-
   describe 'Get /index' do
     before(:each) do
       @user = User.create(email: 'user@example.com', password: 'password', name: 'user')

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Public Recipes Index', type: :feature do
-
   before(:each) do
     @user1 = User.create(email: 'saba@example.com', password: 'sabani', name: 'saba')
     @user1.confirm
