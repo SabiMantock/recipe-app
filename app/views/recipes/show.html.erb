@@ -41,7 +41,7 @@
         <% food = recipe_food.food %>
         <tr>
           <td><%= food.name %></td>
-          <td><%= recipe_food.quantity %> </td>
+          <td><%= recipe_food.quantity %> <%= food.measurement_unit %> </td>
           <td> $<%= food.price * recipe_food.quantity %></td>
           <td>
               <% if @recipe.user == current_user %>
