@@ -1,0 +1,26 @@
+<div class="flex flex-col items-center mt-14">
+  <h1 class="text-2xl font-bold mb-8">Add New Ingredient</h1>
+
+  <% if flash[:error].present? %>
+    <div class="error">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
+
+  <%= form_with(model: [@recipe, @recipe_food], local: true, class: "w-full max-w-sm") do |form| %>
+    <div class="mb-4">
+      <%= form.label :food_id, "Food", class: "block font-bold mb-2" %>
+      <%= form.collection_select :food_id, @foods, :id, :name, { prompt: "Select food item" }, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :quantity, "Quantity", class: "block font-bold mb-2" %>
+      <%= form.number_field :quantity, class: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-300" %>
+    </div>
+
+    <div class="flex justify-between gap-4">
+      <%= form.submit "Add Ingredient", class: "w-full px-4 py-2 bg-[#81bab4] text-white font-semibold rounded-md shadow-md focus:outline-none focus:ring focus:ring-blue-300 cursor-pointer" %>
+      <%= link_to "Cancel", recipe_path(@recipe), class: "w-full px-4 py-2 text-center text-gray-600 bg-gray-200 rounded-md hover:bg-gray-300" %>
+    </div>
+  <% end %>
+</div>
