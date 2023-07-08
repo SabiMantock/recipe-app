@@ -1,6 +1,12 @@
 <div class="flex flex-col items-center mt-14">
   <h1 class="text-2xl font-bold mb-8">Add New Ingredient</h1>
 
+  <% if flash[:error].present? %>
+    <div class="error">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
+
   <%= form_with(model: [@recipe, @recipe_food], local: true, class: "w-full max-w-sm") do |form| %>
     <div class="mb-4">
       <%= form.label :food_id, "Food", class: "block font-bold mb-2" %>

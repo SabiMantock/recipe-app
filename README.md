@@ -98,6 +98,7 @@ Install the project dependencies with:
 
 ```
   bundle install
+  npm install
 ```
 
 ### Usage <a name="usage"></a>
@@ -150,7 +151,7 @@ You can deploy this project using:
 - Deployement
 - Add API endpoints.
 - API documentation.
-.
+  .
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

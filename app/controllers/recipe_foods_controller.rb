@@ -15,8 +15,9 @@ class RecipeFoodsController < ApplicationController
       flash[:success] = 'Ingredient successfully added'
       redirect_to @recipe
     else
+      @foods = Food.all
       flash[:error] = 'Error adding ingredient'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
