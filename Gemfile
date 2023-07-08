@@ -82,3 +82,5 @@ gem 'jquery-rails'
 
 gem 'rails-controller-testing'
 gem 'rails-ujs'
+
+gem 'tailwindcss-rails', '~> 2.0'

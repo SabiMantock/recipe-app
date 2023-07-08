@@ -1,31 +1,47 @@
-<h1>Shopping List</h1>
+<div class="flex flex-col min-h-screen sm:w-4/5 mx-auto">
+  
 
-<% if @missing_foods.empty? %>
-  <p>No missing food items.</p>
-<% else %>
-  <table>
-    <thead>
+    <div class="flex flex-col items-center mt-8">
+      <h1 class="text-2xl font-bold mb-8">Shopping List</h1>
+
+        <div class="my-4 flex justify-between gap-10">
+    <p>Amount of food items to buy: <%= @missing_foods.size %></p>
+    <p>Total value of food needed: <%= number_to_currency(@total_price) %></p>
+  </div>
+
+      <% if @missing_foods.empty? %>
+        <p>No missing food items.</p>
+      <% else %>
+        <div class="w-full overflow-x-auto">
+          <table class="w-full text-center">
+  <thead>
+    <tr>
+      <th class="py-2 px-4 bg-gray-200">Food</th>
+      <th class="py-2 px-4 bg-gray-200">Quantity</th>
+      <th class="py-2 px-4 bg-gray-200">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @missing_foods.each do |missing_food| %>
       <tr>
-        <th>Food</th>
-        <th>Quantity</th>
-        <th>Price</th>
+        <td class="py-2 px-4"><%= missing_food.food.name %></td>
+        <td class="py-2 px-4"><%= missing_food.quantity %></td>
+        <td class="py-2 px-4"><%= number_to_currency(missing_food.food.price * missing_food.quantity) %></td>
       </tr>
-    </thead>
-    <tbody>
-      <% @missing_foods.each do |missing_food| %>
-        <tr>
-          <td><%= missing_food.food.name %></td>
-          <td><%= missing_food.quantity %></td>
-          <td><%= number_to_currency(missing_food.food.price * missing_food.quantity) %></td>
-        </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th class="py-2 px-4">Total</th>
+      <th class="py-2 px-4"><%= @total_items %></th>
+      <th class="py-2 px-4"><%= number_to_currency(@total_price) %></th>
+    </tr>
+  </tfoot>
+</table>
+
+        </div>
       <% end %>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Total</th>
-        <th><%= @total_items %></th>
-        <th><%= number_to_currency(@total_price) %></th>
-      </tr>
-    </tfoot>
-  </table>
-<% end %>
+    </div>
+
+
+</div>

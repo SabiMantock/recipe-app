@@ -1,11 +1,18 @@
-<h1>Public Recipes</h1>
+<div class="flex flex-col items-center w-full mx-auto mt-8 sm:w-4/5">
+  <h1 class="text-2xl font-bold mb-8">Public Recipes</h1>
 
-<% @public_recipes.each do |recipe| %>
-  <div class="recipe">
-    <h3><%= recipe.name %></h3>
-    <p>Author: <%= recipe.user.name %></p>
-    <p>Total Food Items: <%= recipe.recipe_foods.count %></p>
-   <p>Total Amount: $<%= recipe.calculate_total_amount %></p>
-  </div>
-  <hr>
-<% end %>
+  <% @public_recipes.each do |recipe| %>
+    <div class="bg-white shadow-md rounded-md p-6 mb-6 border border-[#81bab4] w-full flex justify-between   ">
+      <div>
+
+      <h3 class="text-lg font-bold capitalize"><%= recipe.name %></h3>
+      <p class="text-gray-600">Author: <%= recipe.user.name %></p>
+      </div>
+      <div>
+
+      <p class="text-gray-600">Total Food Items: <%= recipe.recipe_foods.count %></p>
+      <p class="text-gray-600">Total Amount: $<%= recipe.calculate_total_amount %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
